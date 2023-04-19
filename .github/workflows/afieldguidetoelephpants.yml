@@ -1,0 +1,44 @@
+name: deploy
+on:
+  push:
+    branches:
+    - master
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+
+    - name: Get composer cache directory
+      id: composer-cache
+      run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+    - name: Cache composer dependencies
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+
+    - name: Install dependencies
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+    - name: Generate site with Sculpin
+      run: vendor/bin/sculpin generate --env=prod
+
+    - name: Push build to gh-pages branch
+      uses: s0/git-publish-subdir-action@develop
+      env:
+        REPO: self
+        BRANCH: gh-pages
+        FOLDER: output_prod
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        COMMIT_NAME: "github-actions[bot]"
+        COMMIT_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+        MESSAGE: "Build of {long-sha} ({msg})"
