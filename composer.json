@@ -14,12 +14,19 @@
             "role": "editor"
         }
     ],
+    "config": {
+        "allow-plugins": {
+            "sculpin/sculpin-theme-composer-plugin": true
+        }
+    },
     "require-dev": {
-        "php": "^7.4",
-        "sculpin/sculpin": "^2.1",
-        "dflydev/embedded-composer": "^1.0@dev"
+        "php": "^8.0",
+        "sculpin/sculpin": "^3.2"
     },
     "autoload": {
         "psr-4": {"AFieldGuideToElephpants\\": "src/"}
-    }
+    },
+	"require": {
+		"ext-json": "*"
+	}
 }
