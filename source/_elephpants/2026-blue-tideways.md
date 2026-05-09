@@ -17,4 +17,5 @@ photos:
 -
 ---
 
-The Tideways ElePHPant represents Tideways, a performance monitoring and profiling platform for PHP applications.
+The Tideways ElePHPant represents Tideways, a performance monitoring and 
+profiling platform for PHP applications.
