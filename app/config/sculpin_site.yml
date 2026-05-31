@@ -133,6 +133,9 @@ subspecies:
     symfony:
         common: "Symfony"
         latin: "symphoniae"
+    symfonycasts:
+        common: "Symfonycasts"
+        latin: "harmonia"
     tideways:
         common: "Tideways"
         latin: "via aestus"
