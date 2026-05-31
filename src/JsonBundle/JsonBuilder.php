@@ -3,6 +3,7 @@
 namespace AFieldGuideToElephpants\JsonBundle;
 
 use Dflydev\DotAccessConfiguration\Configuration;
+use LogicException;
 use Sculpin\Core\Event\SourceSetEvent;
 use Sculpin\Core\Source\AbstractSource;
 use Sculpin\Core\Source\SourceInterface;
@@ -80,6 +81,8 @@ class JsonBuilder extends AbstractSource
         } elseif ($subspecies = $this->config->get('relatedspecies.'.$category)) {
             $species = $subspecies['latin'];
             $variation = $subspecies['common'];
+        } else {
+            throw new LogicException("Subspecies not found for $category.  It must be added to app/config/sculpin_site.yml");
         }
 
         return [$variation, $species];
