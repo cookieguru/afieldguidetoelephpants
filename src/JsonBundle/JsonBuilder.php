@@ -3,12 +3,15 @@
 namespace AFieldGuideToElephpants\JsonBundle;
 
 use Dflydev\DotAccessConfiguration\Configuration;
+use LogicException;
 use Sculpin\Core\Event\SourceSetEvent;
 use Sculpin\Core\Source\AbstractSource;
 use Sculpin\Core\Source\SourceInterface;
 
 class JsonBuilder extends AbstractSource
 {
+    public const BUNDLE_NAME = 'json.builder';
+
     private $config;
 
     public function __construct(Configuration $config)
@@ -31,7 +34,7 @@ class JsonBuilder extends AbstractSource
 
         // Create new JSON file with the elephpant data
         $json = new DynamicJsonSource('data/all.json');
-        $json->setContent($elephpants);
+        $json->setContent(json_encode($elephpants, JSON_PRETTY_PRINT));
         $event->sourceSet()->mergeSource($json);
     }
 
@@ -78,6 +81,8 @@ class JsonBuilder extends AbstractSource
         } elseif ($subspecies = $this->config->get('relatedspecies.'.$category)) {
             $species = $subspecies['latin'];
             $variation = $subspecies['common'];
+        } else {
+            throw new LogicException("Subspecies not found for $category.  It must be added to app/config/sculpin_site.yml");
         }
 
         return [$variation, $species];
