@@ -14,7 +14,7 @@ class DynamicJsonSource extends AbstractSource
     /**
      * @param string $filename Desired name of the file; used for the permalink
      */
-    public function __construct($filename)
+    public function __construct(string $filename)
     {
         $this->data = new Data();
         $this->isGenerated = true;
@@ -24,12 +24,12 @@ class DynamicJsonSource extends AbstractSource
     }
 
     /**
-     * @param array|mixed $content Content to render as JSON
+     * @param ?string $content Content to render as JSON
      */
-    public function setContent($content = null)
+    public function setContent(?string $content = null): void
     {
         parent::setContent($content);
-        $this->setFormattedContent(json_encode($content, JSON_PRETTY_PRINT));
+        $this->setFormattedContent($content);
 
         $this->hasChanged = true;
     }

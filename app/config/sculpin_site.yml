@@ -13,6 +13,9 @@ subspecies:
     amsterdamphp:
         common: "AmsterdamPHP"
         latin: "amstelodami"
+    bimaculata:
+        common: "Thelia"
+        latin: "bimaculata"
     cakephp:
         common: "CakePHP"
         latin: "pistrini"
@@ -25,6 +28,9 @@ subspecies:
     darkmira:
         common: "Darkmira PHP Tour"
         latin: "unitas"
+    dlf:
+        common: "Dutch Laravel Foundation"
+        latin: "fundamentum batavica laravel"
     dpc:
         common: "Dutch PHP Conference"
         latin: "batavici"
@@ -46,15 +52,24 @@ subspecies:
     laravel:
         common: "Laravel"
         latin: "laraveli"
+    laraveldk:
+        common: "Laravel Denmark"
+        latin: "laraveli danicae"
     linuxforphp:
         common: "Linux for PHP"
         latin: "linuxi"
     magento:
         common: "Magento"
         latin: "mercatoris"
+    office-partner:
+        common: "Office Partner"
+        latin: "officium socium"
     mollie:
         common: "Mollie"
         latin: "expensum"
+    notive:
+        common: "Notive"
+        latin: "noti"
     oracle:
         common: "Oracle"
         latin: "oraculi"
@@ -100,6 +115,12 @@ subspecies:
     haphpy:
         common: "HaPHPy"
         latin: "natalis"
+    original:
+        common: "Original"
+        latin: "Originale"
+    ploi:
+        common: "Ploi"
+        latin: "ploium"
     rainbow:
         common: "Rainbow"
         latin: "arcus"
@@ -115,9 +136,15 @@ subspecies:
     symfonycasts:
         common: "Symfonycasts"
         latin: "harmonia"
+    tideways:
+        common: "Tideways"
+        latin: "via aestus"
     upinside:
         common: "Upinside"
         latin: "intusautemi"
+    vonage:
+        common: "Alex"
+        latin: "elephanti hypertext facit quod"
     zend:
         common: "Zend"
         latin: "zeevandi"
