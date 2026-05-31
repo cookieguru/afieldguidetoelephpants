@@ -9,6 +9,8 @@ use Sculpin\Core\Source\SourceInterface;
 
 class JsonBuilder extends AbstractSource
 {
+    public const BUNDLE_NAME = 'json.builder';
+
     private $config;
 
     public function __construct(Configuration $config)
@@ -31,7 +33,7 @@ class JsonBuilder extends AbstractSource
 
         // Create new JSON file with the elephpant data
         $json = new DynamicJsonSource('data/all.json');
-        $json->setContent($elephpants);
+        $json->setContent(json_encode($elephpants, JSON_PRETTY_PRINT));
         $event->sourceSet()->mergeSource($json);
     }
 
