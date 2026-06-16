@@ -1,0 +1,37 @@
+name: Build
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Generate site with Sculpin
+        run: vendor/bin/sculpin generate --env=prod
+
+      - name: Validate generated JSON
+        run: |
+          test -f output_prod/data/all.json || {
+            echo "output_prod/data/all.json was not generated"
+            exit 1
+          }
+          
+          jq empty output_prod/data/all.json
+          echo "JSON validation passed"
+
+      - name: Save generated site
+        uses: actions/upload-artifact@v7
+        with:
+          name: output_prod
+          path: output_prod
